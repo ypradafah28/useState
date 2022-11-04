@@ -7,30 +7,29 @@ function Navbar() {
     const [barClick, setBarClick] = useState(false)
     const [closeClick, setCloseClick] = useState(true)
     const [imgView, setImgView] = useState(false)
-    const listRef = useRef()
-    
+    const [list, setList] = useState(false)
 
-    const barRef = useRef()
-    // const closeRef = useRef()
-    // const listRef = useRef()
-    const imgRef = useRef()
+
+    // const barRef = useRef()
+    // // const closeRef = useRef()
+    // // const listRef = useRef()
+    // const imgRef = useRef()
 
 
     const barHandler = () => {
         setBarClick(!barClick)
         setCloseClick(!closeClick)
         setImgView(!imgView)
-        listRef.current.classList.remove('hidden')
+        setList(!list)
         // barRef.current.classList.add("hidden")
         // closeRef.current.classList.remove("hidden")
         // imgRef.current.classList.add('translate-x-[10rem]')
     }
 
     const closeHandler = () => {
-
-        setCloseClick(closeClick)
-        barRef.current.classList.remove("hidden")
-        imgRef.current.classList.remove('translate-x-[10rem]')
+        setBarClick(!barClick)
+        setCloseClick(!closeClick)
+        setImgView(!imgView)
         // closeRef.current.classList.add("hidden")
     }
     // const barHandler = () => {
@@ -61,16 +60,16 @@ function Navbar() {
         <nav>
             <section>
                 <figure className='absolute z-10 top-0 left-0 w-full' >
-                    <img id='img' ref={imgRef} className={`w-full object-cover transition ease-in-out delay-[15ms] duration-[850ms] ${imgView ? " translate-x-[10rem] " : ""}`} src="./bunaken.png" alt="" />
+                    <img id='img' className={`w-full object-cover transition ease-in-out delay-[15ms] duration-[850ms] ${imgView ? " translate-x-[10rem] " : ""}`} src="./bunaken.png" alt="" />
                 </figure>
                 <section className=' relative z-20 flex justify-end top-12 right-20 cursor-pointer '>
-                    <FontAwesomeIcon id='bar' ref={barRef} onClick={barHandler} className={`text-white h-6 ${barClick ? "hidden" : ""}`} icon={faBars} />
+                    <FontAwesomeIcon id='bar' onClick={barHandler} className={`text-white h-6 ${barClick ? 'hidden' : 'visible'} `} icon={faBars} />
                 </section>
                 <section className=' relative z-20 flex justify-end top-12 right-20 cursor-pointer'>
-                    <FontAwesomeIcon onClick={closeHandler} className={` text-white h-6 ${closeClick ? "hidden" : ""} `} icon={faXmark} />
+                    <FontAwesomeIcon onClick={closeHandler} className={` text-white h-6 ${ closeClick ? "hidden" : "visible" } `} icon={faXmark} />
                 </section>
             </section>
-            <section id='list' ref={listRef} className={`h-full w-32 py-10 px-8 absolute top-0 bg-white hidden `}>
+            <section id='list' className={`h-full w-32 py-10 px-8 absolute top-0 bg-white`}>
                 <ul className='font-sans text-base'>
                     <li className='my-4'><a href="/#"> Home </a></li>
                     <li className='my-4'><a href="/#"> Services </a></li>
